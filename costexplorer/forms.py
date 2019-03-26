@@ -3,13 +3,17 @@ from django import forms
 from .models import Patient, Hospital, Treatment, PatientTreatment
 from django.forms import ModelChoiceField
 
-class CustomModelChoiceField(ModelChoiceField):
+class HospitalModelChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return "%s. %s" % (obj.id, obj.name)
 
-class CustomPatoentModelChoiceField(ModelChoiceField):
+class PatientModelChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return "%s. %s %s" % (obj.id, obj.name, obj.last_name)        
+        return "%s. %s %s" % (obj.id, obj.name, obj.last_name)   
+
+class TreatmentModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return "%s in %s (%s$)" % (obj.name, obj.hospital.name, obj.price)              
 
 class PatientForm(forms.ModelForm):
 
@@ -27,7 +31,7 @@ class HospitalForm(forms.ModelForm):
 
 class TreatmentForm(forms.ModelForm):
 
-    hospital = CustomModelChoiceField(queryset=Hospital.objects.all())
+    hospital = HospitalModelChoiceField(queryset=Hospital.objects.all())
 
     class Meta:
         model = Treatment
@@ -35,8 +39,8 @@ class TreatmentForm(forms.ModelForm):
 
 class PatientTreatmentForm(forms.ModelForm):
 
-    patient = CustomPatoentModelChoiceField(queryset=Patient.objects.all())
-    treatment = CustomModelChoiceField(queryset=Treatment.objects.all())
+    patient = PatientModelChoiceField(queryset=Patient.objects.all())
+    treatment = TreatmentModelChoiceField(queryset=Treatment.objects.all())
 
     class Meta:
         model = PatientTreatment

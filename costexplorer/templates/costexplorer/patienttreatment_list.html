@@ -1,6 +1,7 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'costexplorer/table.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'costexplorer/list.css' %}" />
 
 <ul class="sidebar-nav">
 <li><a href="{% url 'index' %}">Home</a></li>
@@ -16,14 +17,20 @@
       <thead>
       <tr>
             <th>Patient</th>
+            <th>Age</th>
             <th>Treatment</th>
+            <th>In hospital</th>
+            <th>Price</th>
       </tr>
       </thead>
       <tbody>
           {% for patienttreatment in patienttreatment_list %}  
               <tr>
                 <th> {{ patienttreatment.patient.name }} {{ patienttreatment.patient.last_name }}</th>
+                <th> {{ patienttreatment.patient.age }}</th>
                 <th> {{ patienttreatment.treatment.name }}</th>
+                <th> {{ patienttreatment.treatment.hospital.name }}</th>
+                 <th> {{ patienttreatment.treatment.price }}</th>
               </tr> 
           {% endfor %}
       </tbody>
