@@ -1,0 +1,20 @@
+<ul class="sidebar-nav">
+<li><a href="{% url 'index' %}">Home</a></li>
+<li><a href="{% url 'hospital_new' %}">Add Hospital</a></li>
+</ul>
+
+<!-- List of patients -->
+{% block content %}
+  <h1>Hospitals</h1>
+  {% if hospital_list %}
+  <ul>
+    {% for hospital in hospital_list %}
+      <li>
+        <a href="/hospital/{{ hospital.id }}">{{hospital.name}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no hospitals in database.</p>
+  {% endif %}       
+{% endblock %}
