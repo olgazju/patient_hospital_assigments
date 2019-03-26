@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'costexplorer/table.css' %}" />
+
 <ul class="sidebar-nav">
 <li><a href="{% url 'index' %}">Home</a></li>
 <li><a href="{% url 'hospital_new' %}">Add Hospital</a></li>
@@ -7,13 +11,21 @@
 {% block content %}
   <h1>Hospitals</h1>
   {% if hospital_list %}
-  <ul>
-    {% for hospital in hospital_list %}
-      <li>
-        <a href="/hospital/{{ hospital.id }}">{{hospital.name}}</a>
-      </li>
-    {% endfor %}
-  </ul>
+
+    <table class="blueTable">
+      <thead>
+      <tr>
+            <th>Hospital</th>
+      </tr>
+      </thead>
+      <tbody>
+          {% for hospital in hospital_list %}  
+              <tr>
+                <th> <a href="/hospital/{{ hospital.id }}">{{hospital.name}}</a></th>
+              </tr> 
+          {% endfor %}
+      </tbody>
+    </table>
   {% else %}
     <p>There are no hospitals in database.</p>
   {% endif %}       

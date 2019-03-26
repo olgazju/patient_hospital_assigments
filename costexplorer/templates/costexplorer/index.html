@@ -21,9 +21,9 @@
           <ul class="sidebar-nav">
             <li><a href="{% url 'patient' %}">Patients</a></li>
             <li><a href="{% url 'hospital' %}">Hospitals</a></li>
-            <!--<li><a href="">Add treatment with price</a></li>
-            <li><a href="">Add treatment for patient</a></li>
-            <li><a href="">Summaries</a></li> -->
+            <li><a href="{% url 'treatment' %}">Treatments</a></li>
+            <li><a href="{% url 'patienttreatment' %}">Prescribe treatment</a></li>
+            <!--<li><a href="">Summaries</a></li> -->
           </ul>
        {% endblock %}
         </div>

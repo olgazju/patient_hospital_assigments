@@ -1,0 +1,5 @@
+<a href="{% url 'index' %}">Home</a>
+{% block content %}
+    <h2>Patient: {{ patienttreatment.patient.name }} {{patienttreatment.patient.last_name}}</h2>
+    <h2>Treatment: {{ patienttreatment.treatment.name }}</h2>
+{% endblock %}

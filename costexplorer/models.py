@@ -18,7 +18,8 @@ class Hospital(models.Model):
 class Treatment(models.Model):
 	hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
-	price = models.FloatField()
+	price = models.FloatField(validators=[
+            MinValueValidator(0)])
 
 
 class PatientTreatment(models.Model):

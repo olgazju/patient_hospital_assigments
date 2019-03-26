@@ -1,0 +1,37 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'costexplorer/table.css' %}" />
+
+<ul class="sidebar-nav">
+<li><a href="{% url 'index' %}">Home</a></li>
+<li><a href="{% url 'treatment_new' %}">Add Treatment</a></li>
+</ul>
+
+<!-- List of patients -->
+{% block content %}
+  <h1>Treatments</h1>
+  {% if treatment_list %}
+
+  <table class="blueTable">
+  <thead>
+  <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>In hospital</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for treatment in treatment_list %}  
+          <tr>
+            <th> <a href="/treatment/{{ treatment.id }}">{{treatment.name}}</a></th>
+            <th> {{ treatment.price }}$</th>
+            <th> {{ treatment.hospital.name }}</th>
+          </tr> 
+      {% endfor %}
+  </tbody>
+  </table>
+
+  {% else %}
+    <p>There are no treatments in database.</p>
+  {% endif %}       
+{% endblock %}

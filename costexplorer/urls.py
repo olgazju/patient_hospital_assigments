@@ -11,7 +11,13 @@ urlpatterns = [
     path('hospital/', views.HospitalListView.as_view(), name='hospital'),
     path('hospital/new/', views.hospital_new, name='hospital_new'),
     path('hospital/<int:pk>/', views.hospital_details, name='hospital_details'),
-    #path('treatment/', views.treatment, name='treatment'),
-    #path('tfp/', views.tfp, name='tfp'),
-    #path('summary/', views.summary, name='summary'),
+
+    path('treatment/', views.TreatmentListView.as_view(), name='treatment'),
+    path('treatment/new/', views.treatment_new, name='treatment_new'),
+    path('treatment/<int:pk>/', views.treatment_details, name='treatment_details'),
+
+    path('patienttreatment/', views.PatientTreatmentListView.as_view(), name='patienttreatment'),
+    path('patienttreatment/new/', views.patienttreatment_new, name='patienttreatment_new'),
+    path('patienttreatment/<int:pk>/', views.patienttreatment_details, name='patienttreatment_details'),
+
 ]
